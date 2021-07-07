@@ -1,0 +1,32 @@
+{
+  "data-catatan": [
+    {
+      "id": 1625635173956,
+      "judul": "Catatan App",
+      "isi": "SIang ini saya membuat catatan app",
+      "tanggal": "7 Juli 2021",
+      "waktu": "12:19"
+    },
+    {
+      "id": 1625635199217,
+      "judul": "Belajar React Hooks",
+      "isi": "Seru sekali belajar React Hooks",
+      "tanggal": "7 Juli 2021",
+      "waktu": "12:20"
+    },
+    {
+      "id": 1625638939639,
+      "judul": "Belajar React Di Niomic",
+      "isi": "Belajar react di niomic sangat seru\n",
+      "tanggal": "7 Juli 2021",
+      "waktu": "13:22"
+    },
+    {
+      "id": 1625640698100,
+      "judul": "Lorem",
+      "isi": "Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+      "tanggal": "7 Juli 2021",
+      "waktu": "13:51"
+    }
+  ]
+}
