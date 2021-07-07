@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Segment, Grid, Container, Input, Card } from 'semantic-ui-react';
+import { Segment, Grid, Container, Input } from 'semantic-ui-react';
 import API from './services';
 import FormComponent from './components/FormComponent';
 import CatatanComponent from './components/CatatanComponent';
