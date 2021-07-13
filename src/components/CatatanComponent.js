@@ -4,7 +4,7 @@ import { Button, Card } from 'semantic-ui-react';
 const CatatanComponent = ({ data, onUpdate, onRemove}) => {
     return (
         <Card.Group>
-            <Card>
+            <Card fluid>
                 <Card.Content>
                     <Card.Header>{ data.judul }</Card.Header>
                     <Card.Meta>{ data.tanggal} - { data.waktu }</Card.Meta>

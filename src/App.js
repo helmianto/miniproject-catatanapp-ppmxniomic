@@ -5,6 +5,7 @@ import API from './services';
 import FormComponent from './components/FormComponent';
 import CatatanComponent from './components/CatatanComponent';
 import { monthNames } from './helpers/helperFunction';
+import Swal from 'sweetalert2';
 
 const App = () => {
   const [catatan, setCatatan] = useState([]);
@@ -16,6 +17,8 @@ const App = () => {
     waktu: ''
   });
   const [isUpdate, setIsUpdate] = useState(false);
+  const [showAlertJudul, setShowAlertJudul] = useState(false);
+  const [showAlertIsi, setShowAlertIsi] = useState(false);
 
   useEffect(() => {
     getPostAPI();
@@ -57,8 +60,26 @@ const App = () => {
   }
   
   const handleRemove = (id) => {
-    API.deleteCatatanData(id).then((res) => {
-      getPostAPI();
+    Swal.fire({
+      title: 'Yakin ingin menghapus data?',
+      text: "Anda tidak akan dapat mengembalikan ini!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        API.deleteCatatanData(id).then((res) => {
+          getPostAPI();
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        })
+      }
     })
   }
   
@@ -68,6 +89,8 @@ const App = () => {
   }
   
   const handleFormChange = (event) => {
+    if (event.target.name === 'judul') setShowAlertJudul(false);
+    if (event.target.name === 'isi') setShowAlertIsi(false);
     let formCatatanNew = {...formCatatan};
     const date = new Date();
     let timestamp = date.getTime();
@@ -80,9 +103,27 @@ const App = () => {
   
   const handleSubmit = () => {
     if(isUpdate) {
-      putDataToAPi();
+      if(formCatatan.judul === '' && formCatatan.isi === ''){
+        setShowAlertJudul(true);
+        setShowAlertIsi(true);
+      } else if(formCatatan.judul === ''){
+        setShowAlertJudul(true);
+      } else if(formCatatan.isi === ''){
+        setShowAlertIsi(true);
+      } else {
+        putDataToAPi();
+      }
     } else {
-      postDataToAPI();
+      if(formCatatan.judul === '' && formCatatan.isi === ''){
+        setShowAlertJudul(true);
+        setShowAlertIsi(true);
+      } else if(formCatatan.judul === ''){
+        setShowAlertJudul(true);
+      } else if(formCatatan.isi === ''){
+        setShowAlertIsi(true);
+      } else {
+        postDataToAPI();
+      }
     }
   }
 
@@ -107,7 +148,7 @@ const App = () => {
         <Container>
           <Grid>
             <Grid.Row>
-              <Grid.Column width={8}>
+              <Grid.Column mobile={16} tablet={8} computer={8}>
                 <Segment textAlign='center' color='teal'>
                   <h4>Form Input Catatan</h4>                 
                 </Segment>
@@ -116,10 +157,12 @@ const App = () => {
                     formCatatan={formCatatan}
                     onChange={handleFormChange}
                     onSubmit={handleSubmit}
+                    isShowAlertJudul={showAlertJudul}
+                    isShowAlertIsi={showAlertIsi}
                   />
                 </Segment>
               </Grid.Column>
-              <Grid.Column width={8}>
+              <Grid.Column mobile={16} tablet={8} computer={8}>
                 <Segment textAlign='center' color='teal'>
                   <h4>Data Catatan</h4>                 
                 </Segment>
