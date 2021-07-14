@@ -6,6 +6,7 @@ import FormComponent from './components/FormComponent';
 import CatatanComponent from './components/CatatanComponent';
 import { monthNames } from './helpers/helperFunction';
 import Swal from 'sweetalert2';
+import Toast from './notifications/Toast';
 
 const App = () => {
   const [catatan, setCatatan] = useState([]);
@@ -43,6 +44,10 @@ const App = () => {
           tanggal: '',
           waktu: ''
         });
+        Toast.fire({
+          icon: 'success',
+          title: 'Data berhasil diubah'
+        })
     })
   }
   
@@ -56,6 +61,10 @@ const App = () => {
           tanggal: '',
           waktu: ''
         });
+        Toast.fire({
+          icon: 'success',
+          title: 'Data berhasil ditambahkan'
+        })
     });
   }
   
@@ -73,11 +82,10 @@ const App = () => {
       if (result.isConfirmed) {
         API.deleteCatatanData(id).then((res) => {
           getPostAPI();
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
+          Toast.fire({
+            icon: 'success',
+            title: 'Data berhasil dihapus'
+          });
         })
       }
     })
